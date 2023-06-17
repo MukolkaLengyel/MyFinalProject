@@ -12,9 +12,15 @@ public sealed class SampleContext : DbContext
     {
     }
 
+    public SampleContext()
+    {
+    }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
     optionsBuilder.UseSqlServer(
             "Data Source=MUKOLAOFMYKACHE;" +
             "Initial Catalog=BitLink;" +
-            "Integrated Security=True;");
+            "Integrated Security=True;" +
+            "Encrypt = True;" +
+            "TrustServerCertificate=True;");
 }

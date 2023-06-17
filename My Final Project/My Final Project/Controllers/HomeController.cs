@@ -14,8 +14,10 @@ namespace BitLink.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly SampleContext Context;
+        //public HomeController(SampleContext context) => Context = context; <-- Making an error situation
+
         private readonly ILogger<HomeController> _logger;
-        private readonly SampleContext _context;
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -33,6 +35,11 @@ namespace BitLink.Controllers
             return View();
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
         public IActionResult Registration()
         {
             return View();
@@ -41,13 +48,14 @@ namespace BitLink.Controllers
         [HttpPost]
         public IActionResult Registration(Person person)
         {
-            var newId = _context.Persons.Max(p => p.Id) + 1;
-            _context.Persons.Add(person with { Id = newId });
-            _context.SaveChanges();
+            using var context = new SampleContext();
+            var newId = context.Persons.Max(p => p.Id) + 1;
+            context.Persons.Add(person with { Id = newId });
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public IActionResult Tutorials()
+        public IActionResult MainPage()
         {
             return View();
         }
@@ -58,11 +66,8 @@ namespace BitLink.Controllers
         }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
+        public IActionResult Error() => View(new ErrorViewModel
+        { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 
     }
 }

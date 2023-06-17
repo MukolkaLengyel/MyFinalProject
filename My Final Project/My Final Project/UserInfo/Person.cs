@@ -5,6 +5,8 @@ namespace BitLink.Dao;
 
 public sealed record Person : EntityWithId
 {
+    //public int Id { get; set; }
+
     [Required(ErrorMessage = "First Name is Required!")]
     [MinLength(3, ErrorMessage = "First Name must be at least 3 characters long!")]
     [StringLength(50, ErrorMessage = "First Name cannot be longer than 50 characters!")]
