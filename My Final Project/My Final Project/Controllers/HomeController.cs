@@ -45,15 +45,37 @@ namespace BitLink.Controllers
             return View();
         }
 
+        //Still doesen't work
         [HttpPost]
         public IActionResult Registration(Person person)
         {
+
+            //using (var ctx = new SampleContext())
+            //{
+            //    ctx.Persons.Add(new Person()
+            //    {
+            //        Id = person.Id,
+            //        FirstName = person.FirstName,
+            //        LastName = person.LastName,
+            //        Username = person.Username,
+            //        Password = person.Password,
+            //        Age = person.Age,
+            //        Gender = person.Gender
+
+            //    });
+
+            //    ctx.SaveChanges();
+            //}
+            //return RedirectToAction("Index");
+
+
             using var context = new SampleContext();
-            var newId = context.Persons.Max(p => p.Id) + 1;
+            var newId = context.Persons.Max(person => person.Id) + 1;
             context.Persons.Add(person with { Id = newId });
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+
 
         public IActionResult MainPage()
         {
@@ -68,6 +90,6 @@ namespace BitLink.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() => View(new ErrorViewModel
         { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-
     }
-}
+    
+}   

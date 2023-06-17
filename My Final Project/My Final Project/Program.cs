@@ -27,6 +27,7 @@ namespace BitLink
 
             var app = webApplicationBuilder.Build();
 
+            //database
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews()
                 .AddViewOptions(Options =>
