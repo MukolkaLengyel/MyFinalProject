@@ -2,53 +2,58 @@
 @model Person
 
 @{
-    ViewData["Title"] = " Registration ";
+    ViewData["Title"] = "Sing up";
 }
 
-<h2>@ViewData["Title"]</h2>
-
-<form asp-action="Registration" method="post">
-    <div class="form-group">
-        <label for="fname">First Name:</label><br>
-        <input placeholder="Enter Your First Name" type="fname" id="fname" class="form-control" aria-labelledby="fname" required></input>
+<h2 class="logo-container">Sing up</h2>
+<form asp-action="Registration" method="post" class="container">
+    <div class="form-content">
+        <label for="fname" class="form-text"></label><br>
+        <input placeholder="Enter Your First Name" type="fname" id="fname" class="form-content" aria-labelledby="fname" required></input>
         <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="fname">Last Name:</label><br>
-        <input placeholder="Enter Your Name" type="lname" id="lname" class="form-control" aria-labelledby="lname" required></input>
+    <div class="form-content">
+        <label for="fname" class="form-text"></label><br>
+        <input placeholder="Enter Your Last Name" type="lname" id="lname" class="form-content" aria-labelledby="lname" required></input>
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <lable for="uname">Username:</lable><br>
-        <input placeholder="Write your creative Username" type="uname" id="uname" class="form-control" aria-labelledby="uname" required></input>
+    <div class="form-content">
+        <lable for="uname" class="form-text"></lable><br>
+        <input placeholder="Write your creative Username" type="uname" id="uname" class="form-content" aria-labelledby="uname" required></input>
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="age">Your Age:</label>
-        <input placeholder="Your Age" type="age" id="age" class="form-control" aria-labelledby="age" required></input>
+    <div class="form-content">
+        <label for="age" class="form-text"></label>
+        <input placeholder="Your Age" type="age" id="age" class="form-content" aria-labelledby="age" required></input>
         <span asp-validation-for="Age" class="text-danger"></span>
     </div>
-    
-    <div class="form-group">
-        <lable for="password">Password:</lable>
-        <input placeholder="1234" type="password" id="password" class="form-control" aria-labelledby="password" required></input>
-        <span asp-validation-for="Password" class="text-danger"></span>
-    </div>
 
-        <div class="form-group">
-        <lable asp-for="gender">Gender</lable>
-        <select asp-for="Gender" class="form-control">
+    <div class="form-content">
+        <lable asp-for="gender" class="form-text"></lable>
+        <select asp-for="Gender" class="form-content">
             <option value="male">Male</option>
             <option value="female">Female</option>
         </select>
         <span asp-validation-for="Gender" class="text-danger"></span>
-    </div> 
-
-    <div>
-        <button class="btn btn-primary" type="submit">Login</button>
     </div>
+
+    <div class="form-content">
+        <lable for="password" class="form-text"></lable>
+        <input placeholder="Enter your Password" type="password" id="password" class="form-content" aria-labelledby="password" required></input>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="button-container">
+        <button class="btn btn-primary" type="submit">Sing Up!</button>
+    </div>
+
+    <div class="logo-container">
+        Already have an account?
+        <a href="Login">Login now!</a>
+    </div>
+
 
 </form>

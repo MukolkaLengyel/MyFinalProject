@@ -18,14 +18,59 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    background: #99ddff; 
+    margin-bottom: 60px;
 }
 
-.my-red-text{
-    color:darkred;
-    font-size:30px;
+/*Sing up*/
+.logo-container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
 }
 
-.backgroud{
-    background-color:aqua;
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+/*Table design*/
+.form-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 1000px;
+    /*outline: none;*/
+    /*border: none;*/
+    padding: 0 70px;
+    padding-right: 10px;
+
+    font-size: 16px;
+    font-weight: 100;
+}
+
+.form-text {
+    font-size: 16px;
+    font-weight: 100;
+    padding: 100px;
+}
+
+.user-pic {
+    width: 50px;
+    margin-right: 16px;
+    margin-left: 16px;
+    display: flex;
+}
+
+.icons {
+    width: 50px;
+    margin-right: 16px;
+    margin-left: 16px;
+    display: flex;
 }

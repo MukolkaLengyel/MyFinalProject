@@ -45,35 +45,40 @@ namespace BitLink.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            return View();
+        }
+
         //Still doesen't work
         [HttpPost]
         public IActionResult Registration(Person person)
         {
 
-            //using (var ctx = new SampleContext())
-            //{
-            //    ctx.Persons.Add(new Person()
-            //    {
-            //        Id = person.Id,
-            //        FirstName = person.FirstName,
-            //        LastName = person.LastName,
-            //        Username = person.Username,
-            //        Password = person.Password,
-            //        Age = person.Age,
-            //        Gender = person.Gender
+            using (var ctx = new SampleContext())
+            {
+                ctx.Persons.Add(new Person()
+                {
+                    Id = person.Id,
+                    FirstName = person.FirstName,
+                    LastName = person.LastName,
+                    Username = person.Username,
+                    Password = person.Password,
+                    Age = person.Age,
+                    Gender = person.Gender
 
-            //    });
+                });
 
-            //    ctx.SaveChanges();
-            //}
-            //return RedirectToAction("Index");
-
-
-            using var context = new SampleContext();
-            var newId = context.Persons.Max(person => person.Id) + 1;
-            context.Persons.Add(person with { Id = newId });
-            context.SaveChanges();
+                ctx.SaveChanges();
+            }
             return RedirectToAction("Index");
+
+
+            //using var context = new SampleContext();
+            //var newId = context.Persons.Max(person => person.Id) + 1;
+            //context.Persons.Add(person with { Id = newId });
+            //context.SaveChanges();
+            //return RedirectToAction("Index");
         }
 
 
@@ -81,11 +86,6 @@ namespace BitLink.Controllers
         {
             return View();
         }
-
-        /*public ActionResult RedirectToOtherPage()
-        {
-            return RedirectToAction("MainPage");
-        }*/
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error() => View(new ErrorViewModel

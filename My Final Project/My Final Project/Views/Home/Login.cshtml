@@ -1,0 +1,30 @@
+﻿@using BitLink.Dao;
+@model Person
+
+@{
+    ViewData["Title"] = "Log in";
+}
+<form asp-action="Login" method="post" class="container">
+    <h2 class="logo-container">Log in</h2>
+    <div class="form-content">
+        <lable for="uname" class="form-text"></lable><br>
+        <input placeholder="Enter your Name or Username" type="uname" id="uname" class="form-content" aria-labelledby="uname" required></input>
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-content">
+        <lable for="password" class="form-text"></lable>
+        <input placeholder="Enter your Password" type="password" id="password" class="form-content" aria-labelledby="password" required></input>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="button-container">
+        <button class="btn btn-primary" type="submit">Login</button>
+    </div>
+
+    <div class="logo-container">
+        Forgot Password?
+        <a href="#">Reset now!</a>
+    </div>
+
+</form>
