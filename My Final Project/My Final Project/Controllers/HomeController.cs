@@ -54,7 +54,7 @@ namespace BitLink.Controllers
         [HttpPost]
         public IActionResult Registration(Person person)
         {
-
+            //A new one, but still doesen't work
             using (var ctx = new SampleContext())
             {
                 ctx.Persons.Add(new Person()
