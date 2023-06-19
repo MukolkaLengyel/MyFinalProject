@@ -12,9 +12,6 @@ public sealed class SampleContext : DbContext
     {
     }
 
-    public SampleContext()
-    {
-    }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
     optionsBuilder.UseSqlServer(

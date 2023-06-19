@@ -14,12 +14,12 @@ namespace BitLink.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly SampleContext Context;
-        //public HomeController(SampleContext context) => Context = context; <-- Making an error situation
-
+        private readonly SampleContext context;
         private readonly ILogger<HomeController> _logger;
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(SampleContext context, ILogger<HomeController> logger)
         {
+            this.context = context;
             _logger = logger;
         }
 
@@ -40,49 +40,30 @@ namespace BitLink.Controllers
             return View();
         }
 
+        public IActionResult Login() => 
+            View(new Admin { ReturnUrl = HttpContext.Request.Query["ReturnUrl"].ToString() });
+
         public IActionResult Registration()
         {
             return View();
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
-
-        //Still doesen't work
         [HttpPost]
-        public IActionResult Registration(Person person)
+        public async Task <IActionResult> Registration(Person person)
         {
-            //A new way to connect, but still doesen't work
-            using (var ctx = new SampleContext())
-            {
-                ctx.Persons.Add(new Person()
-                {
-                    Id = person.Id,
-                    FirstName = person.FirstName,
-                    LastName = person.LastName,
-                    Username = person.Username,
-                    Password = person.Password,
-                    Age = person.Age,
-                    Gender = person.Gender
-
-                });
-
-                ctx.SaveChanges();
-            }
+           var newId = await context.Persons.MaxAsync(person => person.Id) +1;
+            await context.Persons.AddAsync(person with { Id = newId });
+            await context.SaveChangesAsync();
             return RedirectToAction("Index");
-
-
-            //using var context = new SampleContext();
-            //var newId = context.Persons.Max(person => person.Id) + 1;
-            //context.Persons.Add(person with { Id = newId });
-            //context.SaveChanges();
-            //return RedirectToAction("Index");
         }
 
 
         public IActionResult MainPage()
+        {
+            return View();
+        }
+
+        public IActionResult ProgPage()
         {
             return View();
         }

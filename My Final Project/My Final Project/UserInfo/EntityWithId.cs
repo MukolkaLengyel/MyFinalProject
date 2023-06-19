@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace BitLink.Dao;
+﻿namespace BitLink.Dao;
 
 public record EntityWithId
 {
