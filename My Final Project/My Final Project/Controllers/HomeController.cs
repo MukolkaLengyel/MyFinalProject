@@ -57,13 +57,17 @@ namespace BitLink.Controllers
             return RedirectToAction("Index");
         }
 
-
-        public IActionResult MainPage()
+        public IActionResult ProgPage()
         {
             return View();
         }
 
-        public IActionResult ProgPage()
+        public IActionResult Page3D()
+        {
+            return View();
+        }
+
+        public IActionResult MainPage()
         {
             return View();
         }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Pages";
+    ViewData["Title"] = "Main Page";
 }
 
 <div>
@@ -7,21 +7,24 @@
 
     <h5> Programming Tutorials </h5>
     <div class="d-grid gap-2 d-md-block">
-        <a asp-controller="PageControllers" asp-action="ProgPage" class="nav-link">
+        <a asp-controller="Home/Pages" asp-action="ProgPage" class="nav-link">
             <button class="btn btn-primary">View</button>
         </a>
     </div>
 
     <h5>3D Modelling-Animation Tutorials</h5>
     <div class="d-grid gap-2 d-md-block">
-        <a asp-controller="PageController" asp-action="3DPage" class="nav-link">
+        <a asp-controller="Pages" asp-action="Page3D" class="nav-link">
             <button class="btn btn-primary">View</button>
         </a>
     </div>
 
-    <h5>
-        <a href="#">2D Graphic-Animation Tutorials</a>
-    </h5>
+    <h5>2D Graphic-Animation Tutorials</h5>
+    <div class="d-grid gap-2 d-md-block">
+        <a asp-controller="Home" asp-action="Page2D" class="nav-link">
+            <button class="btn btn-primary">View</button>
+        </a>
+    </div>
 
     <h5>
         <a href="#">IT News</a>
