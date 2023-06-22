@@ -31,8 +31,6 @@ public class Program
 
         // register the database context
         builder.Services.AddDbContext<SampleContext>();
-        //webApplicationBuilder.Services.AddAuthentication()
-        //    .AddCookie(o => o.LoginPath = "/Home/Login");
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
