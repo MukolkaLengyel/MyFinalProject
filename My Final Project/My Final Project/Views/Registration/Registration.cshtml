@@ -9,25 +9,25 @@
 <form asp-action="Registration" method="post" class="container">
     <div class="form-content">
         <label for="fname" class="form-text"></label><br>
-        <input placeholder="Enter Your First Name" type="fname" id="fname" class="form-content" aria-labelledby="fname" required></input>
+        <input asp-for="FirstName" placeholder="Enter Your First Name" type="fname" id="fname" class="form-content" aria-labelledby="fname" required></input>
         <span asp-validation-for="FirstName" class="text-danger"></span>
     </div>
 
     <div class="form-content">
         <label for="fname" class="form-text"></label><br>
-        <input placeholder="Enter Your Last Name" type="lname" id="lname" class="form-content" aria-labelledby="lname" required></input>
+        <input asp-for="LastName" placeholder="Enter Your Last Name" type="lname" id="lname" class="form-content" aria-labelledby="lname" required></input>
         <span asp-validation-for="LastName" class="text-danger"></span>
     </div>
 
     <div class="form-content">
         <lable for="uname" class="form-text"></lable><br>
-        <input placeholder="Write your creative Username" type="uname" id="uname" class="form-content" aria-labelledby="uname" required></input>
+        <input asp-for="Username" placeholder="Write your creative Username" type="uname" id="uname" class="form-content" aria-labelledby="uname" required></input>
         <span asp-validation-for="Username" class="text-danger"></span>
     </div>
 
     <div class="form-content">
         <label for="age" class="form-text"></label>
-        <input placeholder="Your Age" type="age" id="age" class="form-content" aria-labelledby="age" required></input>
+        <input asp-for="Age" placeholder="Your Age" type="age" id="age" class="form-content" aria-labelledby="age" required></input>
         <span asp-validation-for="Age" class="text-danger"></span>
     </div>
 
@@ -42,7 +42,7 @@
 
     <div class="form-content">
         <lable for="password" class="form-text"></lable>
-        <input placeholder="Enter your Password" type="password" id="password" class="form-content" aria-labelledby="password" required></input>
+        <input asp-for="Password" placeholder="Enter your Password" type="password" id="password" class="form-content" aria-labelledby="password" required></input>
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
 

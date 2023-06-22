@@ -20,7 +20,6 @@ namespace BitLink
             // Add services to the container.
             webApplicationBuilder.Services.AddControllersWithViews();
 
-            webApplicationBuilder.Services.AddDbContext<SampleContext>();
 
             webApplicationBuilder.Services.AddDbContext<SampleContext>
             (builder => builder.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("SampleDb")));
@@ -60,6 +59,8 @@ namespace BitLink
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

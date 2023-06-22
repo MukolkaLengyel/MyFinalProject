@@ -1,8 +1,14 @@
-﻿using System.Security.Cryptography;
+﻿using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
+using BitLink.Logic;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
+namespace BitLink.Logic;
 
-public static class PasswordEncryption
+// our own encryption class
+public static class LoginExtensions
 {
     // hash password
     public static string HashPassword(string password)
@@ -13,7 +19,19 @@ public static class PasswordEncryption
         return Convert.ToBase64String(hashedBytes);
     }
 
-    // check password
-    public static bool CheckPassword(string password, string hash) =>
-        HashPassword(password) == hash;
+    public static async Task SignIn(HttpContext context, AdminDto dbAdmin)
+    {
+        await context.SignInAsync(
+            new ClaimsPrincipal(new ClaimsIdentity(
+                new Claim[]
+                {
+                    new(ClaimTypes.Name, dbAdmin.Login),
+                    new(ClaimTypes.Role, dbAdmin.Role),
+                }, CookieAuthenticationDefaults.AuthenticationScheme)));
+    }
+
+    internal static Task SignIn(HttpContext httpContext, Admin dbAdmin)
+    {
+        throw new NotImplementedException();
+    }
 }
