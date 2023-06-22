@@ -51,6 +51,7 @@ public class HomeController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(Person person)
     {
+        //InvalidCastException: Unable to cast object of type 'System.String' to type 'System.Int32'.
         var dbPerson = _context.Persons
             .FirstOrDefault(p =>
                 p.Username == person.Username && p.Password == person.Password);
