@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using BitLink.Dao;
 using BitLink.Logic;
+using Person = BitLink.Dao.Person;
+using Persons = BitLink.Dao.Persons;
 
 namespace BitLink
 {
@@ -46,7 +48,8 @@ namespace BitLink
             builder.Services.AddDbContext<SampleContext>();
             var App = builder.Build();
 
-
+            //webApplicationBuilder.Services.AddAuthentication()
+            //    .AddCookie(o => o.LoginPath = "/Home/Login");
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
