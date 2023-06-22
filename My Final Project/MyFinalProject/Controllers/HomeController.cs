@@ -49,12 +49,11 @@ public class HomeController : Controller
 
     ///With Persons Role
     [HttpPost]
-    public async Task<IActionResult> Login(Persons persons)
+    public async Task<IActionResult> Login(Person person)
     {
         var dbPerson = _context.Persons
-            .FirstOrDefault(person =>
-                person.Username == persons.Login && person.Password == persons.Pass);
-
+            .FirstOrDefault(p =>
+                p.Username == person.Username && p.Password == person.Password);
         if (dbPerson == null) return RedirectToAction("Login");
         await HttpContext.SignInAsync(new ClaimsPrincipal(
             new ClaimsIdentity(
@@ -63,13 +62,9 @@ public class HomeController : Controller
                     new(ClaimTypes.Name, dbPerson.Username),
                     new(ClaimTypes.Role, dbPerson.Role)
                 }, CookieAuthenticationDefaults.AuthenticationScheme)));
-
-        if (!string.IsNullOrWhiteSpace(persons.ReturnUrl) && Url.IsLocalUrl(persons.ReturnUrl))
-        {
-            return Redirect(persons.ReturnUrl);
-        }
-
-        return RedirectToAction("MainPage");
+        return !string.IsNullOrWhiteSpace(person.ReturnUrl) && Url.IsLocalUrl(person.ReturnUrl)
+            ? Redirect(person.ReturnUrl)
+            : RedirectToAction("MainPage");
     }
 
     // logout the user
