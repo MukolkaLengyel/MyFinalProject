@@ -70,46 +70,27 @@ namespace BitLink.Controllers
 
 
         ///With Persons Role
-        //[HttpPost]
-        //public async Task<IActionResult> Login(Persons persons)
-        //{
-        //    var dbUser = _context.Persons
-        //        .FirstOrDefault(u =>
-        //        u.Username == u.Username && u.Password == u.Password);
-
-        //    if (dbUser == null) return RedirectToAction("Login");
-        //    await HttpContext.SignInAsync(new ClaimsPrincipal(
-        //        new ClaimsIdentity(
-        //            new Claim[]
-        //            {
-        //                new Claim(ClaimTypes.Name, dbUser.Username),
-        //                new Claim(ClaimTypes.Role, dbUser.Role)
-        //            }, CookieAuthenticationDefaults.AuthenticationScheme)));
-
-        //    if (!string.IsNullOrWhiteSpace(User.ReturnUrl) && Url.IsLocalUrl(User.ReturnUrl))
-        //    {
-        //        return Redirect(User.ReturnUrl);
-        //    }
-        //    return RedirectToAction("MainPage");
-        //}
-
-        //With Admin Role
         [HttpPost]
-        public async Task<IActionResult> Login(Admin admin)
+        public async Task<IActionResult> Login(Persons persons)
         {
-            var dbAdmin = _context.Admin.FirstOrDefault(a =>
-                a.Login == admin.Login && a.Pass == admin.Pass);
-            if (dbAdmin == null) return RedirectToAction("Login");
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(new ClaimsIdentity(
-                    new List<Claim>
+            var dbPerson = _context.Persons
+                .FirstOrDefault(u =>
+                u.Username == u.Username && u.Password == u.Password);
+
+            if (dbPerson == null) return RedirectToAction("Login");
+            await HttpContext.SignInAsync(new ClaimsPrincipal(
+                new ClaimsIdentity(
+                    new Claim[]
                     {
-                    new(ClaimTypes.Name, dbAdmin.Login),
-                    new(ClaimTypes.Role, dbAdmin.Role)
+                        new (ClaimTypes.Name, dbPerson.Username),
+                        new (ClaimTypes.Role, dbPerson.Role)
                     }, CookieAuthenticationDefaults.AuthenticationScheme)));
-            if (!string.IsNullOrWhiteSpace(admin.ReturnUrl) && Url.IsLocalUrl(admin.ReturnUrl))
-                return Redirect(admin.ReturnUrl);
-            return RedirectToAction("Index");
+
+            if (!string.IsNullOrWhiteSpace(persons.ReturnUrl) && Url.IsLocalUrl(persons.ReturnUrl))
+            {
+                return Redirect(persons.ReturnUrl);
+            }
+            return RedirectToAction("MainPage");
         }
 
         // logout the user
