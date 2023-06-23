@@ -9,6 +9,8 @@ public class Program
         var webApplicationBuilder = WebApplication.CreateBuilder(args);
         var isDevelopment = webApplicationBuilder.Environment.IsDevelopment();
         // Add services to the container.
+
+        
         webApplicationBuilder.Services.AddControllersWithViews();
         webApplicationBuilder.Services.AddDbContext<SampleContext>
             (builder => builder.UseSqlServer(webApplicationBuilder.Configuration.GetConnectionString("SampleDb")));
@@ -31,6 +33,8 @@ public class Program
 
         // register the database context
         builder.Services.AddDbContext<SampleContext>();
+
+        webApplicationBuilder.Services.AddAuthentication().AddCookie(Options => Options.LoginPath = "/Home/MainPage");
 
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
