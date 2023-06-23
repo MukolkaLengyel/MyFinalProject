@@ -11,11 +11,15 @@ namespace BitLink.Controllers
             blogPost = _blogPost;
         }
 
+        // Programming
         public IActionResult CSInfo() => View();
         public IActionResult HtmlInfo() => View();
         public IActionResult JavaInfo() => View();
         public IActionResult Python() => View();
         public IActionResult AddContent() => View();
+
+        //3D modelling
+        public IActionResult Page3DInfo() => View();
         
         //Here is where you add your content
         [HttpPost]

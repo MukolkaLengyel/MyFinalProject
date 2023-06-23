@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "3D Page";
+}
+
+<div class="container text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Free Resources Column</h2>
+
+            <h5>
+                1.YouTube: A Huge library of videos by Mr.Nikolai
+                <a href="https://www.youtube.com/playlist?list=PLHJZrVNvL3d2DV87rows4i311oKaJDF4-">Link for a library.</a>
+            </h5>
+
+            <h5>
+                2.Youtube: Blender Guru channel provides a comprehensive collection of beginner-friendly tutorials for Blender
+                <a href="https://www.youtube.com/user/AndrewPPrice">Link for a video.</a>
+            </h5>
+
+        </div>
+        <div class="col">
+            <h2>Paid Resources Column</h2>
+
+            <h5>
+                1.CG Cookie: CG Cookie offers a range of free Blender tutorials and courses, covering topics from basic modeling to advanced sculpting and animation.
+                <a href="https://cgcookie.com/">Link for site.</a>
+            </h5>
+
+            <h5>
+                2.Udemy: Platform with video courses, sometimes can be very expensive.
+                <a href="https://www.udemy.com/">Link for a site.</a>
+            </h5>
+
+
+        </div>
+
+        <div class="d-grid gap-2 d-md-block">
+            <h4>Do you have anything to add?</h4>
+            <a asp-controller="ProgPageInfo" asp-action="AddContent" class="text-pos">
+                <button class="btn btn-primary">Add it here now!</button>
+            </a>
+        </div>
+
+
+    </div>
+</div>
