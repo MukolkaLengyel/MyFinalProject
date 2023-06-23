@@ -6,6 +6,7 @@ public sealed class SampleContext : DbContext
 {
     public DbSet<Admin> Admin { get; set; }
     public DbSet<Person> Persons { get; set; }
+    public DbSet<BlogPost> BlogPosts { get; set; }
 
     public SampleContext (DbContextOptions<SampleContext> options) 
         : base(options)

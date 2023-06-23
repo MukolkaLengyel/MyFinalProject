@@ -1,32 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BitLink.Logic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BitLink.Controllers
 {
     public class ProgPageInfoController : Controller
     {
-        public IActionResult CSInfo()
+        private readonly SampleContext _blogPost;
+        public ProgPageInfoController(SampleContext blogPost)
         {
-            return View();
+            blogPost = _blogPost;
         }
 
-        public IActionResult HtmlInfo()
+        public IActionResult CSInfo() => View();
+        public IActionResult HtmlInfo() => View();
+        public IActionResult JavaInfo() => View();
+        public IActionResult Python() => View();
+        public IActionResult AddContent() => View();
+        
+        //Here is where you add your content
+        [HttpPost]
+        public IActionResult AddContent(BlogPost blogPost)
         {
-            return View();
-        }
+            if (ModelState.IsValid)
+            {
+                _blogPost.BlogPosts.Add(blogPost);
+                _blogPost.SaveChanges();
+                return RedirectToAction("MainPage", "Home");
+            }
 
-        public IActionResult JavaInfo()
-        {
-            return View();
-        }
-
-        public IActionResult SQL()
-        {
-            return View();
-        }
-
-        public IActionResult Python()
-        {
-            return View();
+            return View(blogPost);
         }
     }
 }

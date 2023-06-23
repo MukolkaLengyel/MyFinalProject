@@ -3,38 +3,37 @@
 }
 
 <div>
-    @if (User.Identity!.IsAuthenticated)
-    {
-        <h1 class="text-success">Hi @User.Identity.Name, what's are we going to do today!?</h1>
+    @{
+        if (User.Identity.IsAuthenticated)
+        {
+            <h1 class="contact-pos">Welcome, @User.Identity.Name! What are we going to do today!?</h1>
+        }
+        else
+        {
+            <h1 class="text-pos ">Welcome, Guest! What are we going to do today!?</h1>
+        }
     }
 
-    <h5> Programming Tutorials </h5>
+    <h5> Learn Programming </h5>
     <div class="d-grid gap-2 d-md-block">
-        <a asp-controller="Pages" asp-action="ProgPage" class="nav-link">
-            <button class="btn btn-primary">View</button>
-        </a>
+        <div class="button-pos">
+            <a asp-controller="Pages" asp-action="ProgPage" class="nav-link">
+                <button class="btn btn-primary">View</button>
+            </a>
+        </div>
     </div>
 
-    <h5>3D Modelling-Animation Tutorials</h5>
+    <h5> Learn 3D Modelling-Animation</h5>
     <div class="d-grid gap-2 d-md-block">
         <a asp-controller="Pages" asp-action="Page3D" class="nav-link">
             <button class="btn btn-primary">View</button>
         </a>
     </div>
 
-    <h5>2D Graphic-Animation Tutorials</h5>
+    <h5> Learn 2D Graphic-Animation</h5>
     <div class="d-grid gap-2 d-md-block">
         <a asp-controller="Pages" asp-action="Page2D" class="nav-link">
             <button class="btn btn-primary">View</button>
         </a>
     </div>
-
-    <h5>
-        <a href="#">IT News</a>
-    </h5>
-
-    <h5>
-        <a href="#">IT Post</a>
-    </h5>
-
 </div>

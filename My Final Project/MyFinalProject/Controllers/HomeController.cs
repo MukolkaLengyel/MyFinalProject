@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using BitLink.Logic;
 using BitLink.UserInfoDao;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BitLink.Controllers;
 
@@ -41,7 +42,7 @@ public class HomeController : Controller
         var newId = await _context.Persons.AnyAsync() ? await _context.Persons.MaxAsync(p => p.Id) + 1 : 1;
         await _context.Persons.AddAsync(person with {Id = newId});
         await _context.SaveChangesAsync();
-        return RedirectToAction("Index");
+        return RedirectToAction("MainPage");
     }
 
     //Login the user
@@ -55,13 +56,13 @@ public class HomeController : Controller
         var dbPerson = _context.Persons
             .FirstOrDefault(p =>
                 p.Username == person.Username && p.Password == person.Password);
-        if (dbPerson == null) return RedirectToAction("Login");
+        if (dbPerson == null) return RedirectToAction("MainPage");
         await HttpContext.SignInAsync(new ClaimsPrincipal(
             new ClaimsIdentity(
                 new Claim[]
                 {
                     new(ClaimTypes.Name, dbPerson.Username),
-                    new(ClaimTypes.Role, dbPerson.Role)
+                    new(ClaimTypes.Role, dbPerson.Password)
                 }, CookieAuthenticationDefaults.AuthenticationScheme)));
         return !string.IsNullOrWhiteSpace(person.ReturnUrl) && Url.IsLocalUrl(person.ReturnUrl)
             ? Redirect(person.ReturnUrl)

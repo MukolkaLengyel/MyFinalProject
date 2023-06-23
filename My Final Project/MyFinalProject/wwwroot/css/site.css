@@ -99,3 +99,8 @@ body {
     height: 60px;
     margin-top: 70px;
 }
+
+.button-pos {
+    display: flex;
+    align-items: center;
+}
